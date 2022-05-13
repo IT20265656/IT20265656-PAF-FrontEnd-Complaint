@@ -121,23 +121,7 @@ public class Complain {
 						 output += "<td><input id='updatecomdec' name='updatecomdec' type='text' value='" + comDec + "'>"+"</td>";
 						 output += "<td><input id='updatecomdate' name='updatecomdate' type='text' value='" + comDate + "'>"+"</td>";
 						 output += "<td><input id='updatecomUID' name='updatecomUID' type='text' value='" + UID + "'>"+"</td>"; 
-					
-						 
-						 // buttons
-//						output += "<td><form method='post' action='#'>"
-//								+ "<input name='btnUpdate' "
-//								+ " type='submit' value='Update'>"
-//								+ "<td><form method='post' action='#'>"
-//								+ "<input name='btnRemove' "
-//								+ " type='submit' value='Remove'>"
-//								+ "<input name='comId' type='hidden' "
-//							    + " value='" + comId + "'>" + "</form></td></tr>"; 
-//						 output += "<td><input name='btnUpdate' type='button' value='Update' class=' btnUpdate'></td>"
-//									+ "<td><form method='post' action='Complain.jsp'>"
-//									+ "<input name='btnRemove' "
-//									+ " type='submit' value='Remove'>"
-//									+ "<input name='hidcomIDDelete' type='hidden' "
-//								    + " value='" + comId + "'>" + "</form></td></tr>";
+			
 						 
 						 output += "<td><input id='btnUpdate' name='btnUpdate' type='button' value='Update' "
 						 + "class='btnUpdate btn btn-secondary' data-itemid='" + comId + "'></td>"
