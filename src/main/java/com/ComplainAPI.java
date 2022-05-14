@@ -24,27 +24,27 @@ public class ComplainAPI extends HttpServlet {
 	Complain comObj = new Complain();
 	
 	// Convert request parameters to a Map
-	private static Map getParsMap(HttpServletRequest request)
-	{
-		Map<String, String> map = new HashMap<String, String>();
-		try
-		{
-			Scanner scanner = new Scanner(request.getInputStream(), "URF-8");
-			String queryString = scanner.hasNext() ?
-								scanner.useDelimiter("\\A").next() : "";
-			scanner.close();
-			
-			String[] params = queryString.split("&");
-			for (String param : params)
-			{
-				String[] p = param.split("=");
-				map.put(p[0], p[1]);
-			}
-		}catch(Exception e)
-		{
-			
-		}
-		return map;
+	private static Map getParasMap(HttpServletRequest request) 
+	{ 
+	 Map<String, String> map = new HashMap<String, String>(); 
+	try
+	 { 
+	 Scanner scanner = new Scanner(request.getInputStream(), "UTF-8"); 
+	 String queryString = scanner.hasNext() ? 
+	 scanner.useDelimiter("\\A").next() : ""; 
+	 scanner.close(); 
+	 String[] params = queryString.split("&"); 
+	 for (String param : params) 
+	 { 
+	
+	 String[] p = param.split("="); 
+	 map.put(p[0], p[1]); 
+	 } 
+	 } 
+	catch (Exception e) 
+	 { 
+	 } 
+	return map; 
 	}
        
     /**
@@ -82,6 +82,15 @@ public class ComplainAPI extends HttpServlet {
 	 */
 	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
+		Map paras = getParasMap(request); 
+		String output = comObj.updateComplain( 
+				paras.get("combox").toString(), 
+				paras.get("comDate").toString(),
+				paras.get("Userid").toString(),
+				paras.get("hidcomIDSave").toString()); 
+		
+		response.getWriter().write(output);
 	}
 
 	/**
@@ -89,6 +98,12 @@ public class ComplainAPI extends HttpServlet {
 	 */
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
+		Map paras = getParasMap(request);
+		String output = comObj.deleteComplain(paras.get("comId").toString());
+		//String output = comObj.deleteComplain("31");
+		response.getWriter().write(output); 
+		
 	}
 
 }

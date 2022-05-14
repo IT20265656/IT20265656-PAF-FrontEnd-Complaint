@@ -1,6 +1,8 @@
 <%@page import="com.Complain"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ page import="java.sql.*" %>
+<% Class.forName("com.mysql.cj.jdbc.Driver"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,7 +30,7 @@
 			</div>
 			<div class="mb-3">
 			  <label for="exampleFormControlTextarea1" class="form-label">Date</label>
-			  <input type="datetime-local" class="form-control" id="comDate" name="comDate" ></input>
+			  <input type="date" class="form-control" id="comDate" name="comDate" ></input>
 			</div>
 			
 			<div id="alertSuccess" class="alert alert-success"></div>
@@ -36,7 +38,6 @@
 			
 			
 		 	<input id="btnSave" name="btnSave" type="button" value="Send" class="button">
-		 	<input id="btnView" name="btnView" type="button" value="view" class="button">
 		 	
 		 	
 		 	<input type="hidden" id="hidcomIDSave" name="hidcomIDSave" value="">

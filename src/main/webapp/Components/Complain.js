@@ -21,7 +21,6 @@ $(document).on("click", "#btnSave", function(event) {
 	
 	//if valid
 	var type = ($("#hidcomIDSave").val() == "") ? "POST" : "PUT";
-	
 	$.ajax(
 	{
 		url : "ComplainAPI",
@@ -34,7 +33,7 @@ $(document).on("click", "#btnSave", function(event) {
 		}
 	});
 	
-	$("#Complaint").submit();
+	//$("#Complaint").submit();
 	
 
 });
@@ -58,16 +57,70 @@ function onComplainSaveComplete(response, status)
 		}
 	}else if(status == "error")
 	{
-		 $("#alertError").text("Error while saving."); 
+		 $("#alertError").text("Error while saving status."); 
 		 $("#alertError").show();
 	}else
 	{
-		 $("#alertError").text("Error while saving."); 
+		 $("#alertError").text("Error while saving wena ekk."); 
 		 $("#alertError").show();
 	}
 		$("#hidcomIDSave").val(""); 
 		$("#Complaint")[0].reset(); 
 }
+
+//Update-------
+$(document).on("click", ".btnUpdate", function(event)
+	{
+		$("#hidcomIDSave").val($(this).data("itemid"));
+		$("#combox").val($(this).closest("tr").find('td:eq(1)').text()); 
+		$("#comDate").val($(this).closest("tr").find('td:eq(2)').text());
+		$("#Userid").val($(this).closest("tr").find('td:eq(3)').text()); 
+	});
+
+//delete	
+$(document).on("click", ".btnRemove", function(event) {
+
+	
+	$.ajax(
+	{
+		url : "ComplainAPI",
+		type : "DELETE",
+		data : "comId=" + $(this).data("itemid"),
+		dataType : "text",
+		complete : function(response, status)
+		{
+			onComplainDeleteComplete(response.responseText, status);
+		}
+	});
+	
+});	
+
+function onComplainDeleteComplete(response, status)
+{ 
+if (status == "success") 
+ { 
+ var resultSet = JSON.parse(response); 
+ if (resultSet.status.trim() == "success") 
+ { 
+ $("#alertSuccess").text("Successfully deleted."); 
+ $("#alertSuccess").show(); 
+ $("#comGrid").html(resultSet.data); 
+ } else if (resultSet.status.trim() == "error") 
+ { 
+ $("#alertError").text(resultSet.data); 
+ $("#alertError").show(); 
+ } 
+ } else if (status == "error") 
+ { 
+ $("#alertError").text("Error while deleting."); 
+ $("#alertError").show(); 
+ } else
+ { 
+ $("#alertError").text("Unknown error while deleting.."); 
+ $("#alertError").show(); 
+ } 
+}
+
 
 function validateComplaintForm() {
 	//Validations 

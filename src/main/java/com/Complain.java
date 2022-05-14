@@ -117,16 +117,16 @@ public class Complain {
 						
 						 // Add into the html table
 							 //output += "<tr><td><input id='hidcomIDUpdate' name='hidcomIDUpdate' type='hidden' value='" + comId + "'>"+"</td>"; 
-						 output += "<form id ='ComplaintUpdate'  method='post' action='Complain.jsp'><tr><td>" +comId+"</td>";
-						 output += "<td><input id='updatecomdec' name='updatecomdec' type='text' value='" + comDec + "'>"+"</td>";
-						 output += "<td><input id='updatecomdate' name='updatecomdate' type='text' value='" + comDate + "'>"+"</td>";
-						 output += "<td><input id='updatecomUID' name='updatecomUID' type='text' value='" + UID + "'>"+"</td>"; 
-			
-						 
+							 output += "<tr><td>" + comId + "</td>"; 
+							 output += "<td>" + comDec + "</td>"; 
+							 output += "<td>" + comDate + "</td>";
+							 output += "<td>" + UID + "</td>";
+						
+						 //buttons
 						 output += "<td><input id='btnUpdate' name='btnUpdate' type='button' value='Update' "
 						 + "class='btnUpdate btn btn-secondary' data-itemid='" + comId + "'></td>"
 						 + "<td><input id='btnRemove' name='btnRemove' type='button' value='Remove' "
-						 + "class='btnRemove btn btn-danger' data-itemid='" + comId + "'></td></tr></form>"; 
+						 + "class='btnRemove btn btn-danger' data-itemid='" + comId + "'></td></tr>"; 
 						 		
 						
 						}
@@ -148,9 +148,9 @@ public class Complain {
 				public String updateComplain(String desc, String comDate, String UID, String ComplainId)
 				{
 					String output = "";
-					
 					try
 					{
+					
 						Connection con = connect();
 						
 						if(con == null)
@@ -175,6 +175,7 @@ public class Complain {
 						 String newComplain = readComplain();
 							output = "{\"status\":\"success\", \"data\": \"" + 
 									newComplain + "\"}"; 
+						
 						 
 						
 					}catch(Exception e)
